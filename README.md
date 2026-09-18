@@ -2,7 +2,7 @@
 
 Final project for DSC 4310 Machine Learning at Baylor University. The goal is to rank insurance policyholders
 by how likely they are to make a service payment call in the next five days, so a proactive email campaign can
-reach likely callers first.
+reach likely callers first and have them pay using online self service.
 
 ## Data
 
