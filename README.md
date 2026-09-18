@@ -2,7 +2,7 @@
 
 Final project for DSC 4310 Machine Learning at Baylor University. The goal is to rank insurance policyholders
 by how likely they are to make a service payment call in the next five days, so a proactive email campaign can
-reach likely callers first and have them pay using online self service.
+reach likely callers first.
 
 ## Data
 
@@ -21,18 +21,22 @@ logistic regression and a Channel 4 payment rule at the same contact budget.
 
 ## Results
 
-| Metric | Validation, May 19 | Test, May 20 |
-| :-- | :-- | :-- |
-| Capture at 10% | 55.35% | 48.17% |
-| ROC-AUC | | 0.839 |
+On the held out test date the model contacts 1,499 records, 10% of that day's book, and finds **48% of
+everyone who called**. Reaching the same callers at random would take half the book.
 
-Contacting the top 10% of records by model score reached 184 of 382 callers on the test date, at a 12.27% call
-rate among contacted customers and 4.82 times the rate of random outreach. That is 11.26 percentage points more
-callers than the Channel 4 payment rule at the same contact volume.
+| Approach, top 10% of May 20 | Callers reached | Share of all 382 callers | Call rate among contacted | Lift |
+| :-- | :-- | :-- | :-- | :-- |
+| Model | 184 | 48.2% | 12.3% | 4.8x |
+| Channel 4 payment rule | 141 | 36.9% | 9.4% | 3.7x |
+| Random outreach | 38 | 10.0% | 2.5% | 1.0x |
 
-Call rates fall on May 19 and May 20, which may mean their outcomes are incomplete. Results assume complete
-tracking through May 25. There is no customer ID in the data, so repeat customers cannot be identified and the
-ranked output needs a duplicate contact check before use.
+The model beats the business rule by 43 extra callers at identical contact cost, an 11.3 point gain in
+capture, and it beats random outreach by nearly five times. ROC-AUC is 0.839 on the test date and capture at
+10% was 55.4% on the validation date.
+
+Call rates fall on May 19 and May 20, which may mean their outcomes are incomplete, so those two dates are
+reported as a floor rather than as final truth. There is no customer ID in the data, so repeat customers
+cannot be identified and the ranked output needs a duplicate contact check before use.
 
 ## Files
 
